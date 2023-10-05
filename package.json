@@ -1,0 +1,13 @@
+{
+  "name": "Mtrx-tests",
+  "version": "1.0.0",
+  "description": "Tests for the Mtrx library",
+  "dependencies": {
+    "mocha": "^7.0.0",
+    "chai": "^4.2.0",
+    "mtrx": "^0.1.6"
+  },
+  "scripts": {
+    "test": "mocha"
+  }
+}
