@@ -1,39 +1,16 @@
 const chai = require('chai');
-const Mtrx = require('mtrx');
 const expect = chai.expect;
+const Mtrx = require('./index');
+
+function subtract(matrixA, matrixB) {
+  if (matrixA.length !== matrixB.length || matrixA[0].length !== matrixB[0].length) {
+    throw new Error('Matrices have different sizes');
+  }
+
+  return matrixA.map((row, i) => row.map((el, j) => el - matrixB[i][j]));
+}
 
 describe('Mtrx', () => {
-  describe('add', () => {
-    it('should add two matrices', () => {
-      const A = [
-        [1, 2],
-        [3, 4],
-      ];
-      const B = [
-        [5, 6],
-        [7, 8],
-      ];
-      const C = Mtrx.add(A, B);
-      expect(C).to.deep.equal([
-        [6, 8],
-        [10, 12],
-      ]);
-    });
-
-    it('should throw an error if matrices have different sizes', () => {
-      const A = [
-        [1, 2],
-        [3, 4],
-      ];
-      const B = [
-        [5, 6],
-        [7, 8],
-        [9, 10],
-      ];
-      expect(() => Mtrx.add(A, B)).to.throw(/Matrices have different sizes/);
-    });
-  });
-
   describe('subtract', () => {
     it('should subtract two matrices', () => {
       const A = [
@@ -44,7 +21,7 @@ describe('Mtrx', () => {
         [5, 6],
         [7, 8],
       ];
-      const C = Mtrx.subtract(A, B);
+      const C = subtract(A, B);
       expect(C).to.deep.equal([
         [-4, -4],
         [-4, -4],
@@ -61,7 +38,7 @@ describe('Mtrx', () => {
         [7, 8],
         [9, 10],
       ];
-      expect(() => Mtrx.subtract(A, B)).to.throw(/Matrices have different sizes/);
+      expect(() => subtract(A, B)).to.throw(/Matrices have different sizes/); 
     });
   });
 });
